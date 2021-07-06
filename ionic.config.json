@@ -1,0 +1,7 @@
+{
+  "name": "romeBuddy",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
