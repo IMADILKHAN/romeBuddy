@@ -15,14 +15,14 @@ export class PlacesService {
     {
       id:'2',
       title:'Tower of London',
-      description:"The Tower of London, officially Her Majesty's Royal Palace and Fortress of the Tower of London, is a historic castle on the north bank of the River Thames in central London.",
+      description:"The Tower of London, officially Her Majesty's Royal Palace and Fortress of the Tower of London.",
       imageUrl:"https://images.unsplash.com/photo-1578666062144-080ac96e3e24?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dG93ZXIlMjBvZiUyMGxvbmRvbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60",
       price:8
     },
     {
       id:'3',
       title:'Oxford Street',
-      description:"Welcome to Oxford Street! First for fashion, lifestyle and technology, get ready for the ultimate shopping experience on the nation's high street.",
+      description:"Welcome to Oxford Street!  ",
       imageUrl:"https://images.unsplash.com/photo-1589136328987-24ba4e6d74b9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1800&q=80",
       price:8
     },
