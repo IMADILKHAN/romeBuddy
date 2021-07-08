@@ -4,10 +4,19 @@
       <ion-back-button defaultHref="/places/tabs/offers">
       </ion-back-button>
     </ion-buttons>
-    <ion-title>offer-bookings</ion-title>
+    <ion-title>Experience Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content style="text-align:center;">
+  <ion-title style="margin:50px;">{{place.title}}</ion-title>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" offset="3">
+        <ion-img [src]="place.imageUrl" ></ion-img>
+        <ion-description> {{place.description}} </ion-description>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+<ion-button [routerLink]="['/','places','tabs','offers','edit',place.id]">Edit Experience</ion-button>
