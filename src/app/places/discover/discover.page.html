@@ -8,25 +8,25 @@
 </ion-header>
 
 
-<ion-content slot='fixed'>
-  <ion-grid>
+<ion-content slot='fixed' no-padding>
+  <ion-grid style="padding:0px !important">
     <ion-row>
       <ion-col >
-        <ion-img style="height:100%;"src='/assets/featuredImg.jpg' ></ion-img>
+        <ion-img src='/assets/featuredImg.jpg' ></ion-img>
       </ion-col>
     </ion-row>
   </ion-grid>
   <ion-card-content>
   </ion-card-content>
   <ion-label style="text-align:center">
-    <h1 style="font-size:3rem;">Discover Experiences</h1>
+    <h2 style="font-size:3rem;">Discover Experiences</h2>
   </ion-label>
   <ion-grid>
     <ion-row>
     <ion-col  size="12" size-sm="8" offset-sm="1"   *ngFor="let loadedPlace of loadedPlaces">
         <ion-item [routerLink]="['/','places','tabs','discover',loadedPlace.id]" >
-        <ion-thumbnail style="width: 30%; height: 200px;" slot="start">
-          <ion-img  [src]="loadedPlace.imageUrl"></ion-img>
+        <ion-thumbnail style="width: 30%; height: 10rem;" slot="start">
+          <ion-img [src]="loadedPlace.imageUrl"></ion-img>
         </ion-thumbnail>
         <ion-label>
           <h2 style="text-align:center;">{{loadedPlace.title}}</h2>

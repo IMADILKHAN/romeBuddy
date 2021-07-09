@@ -17,6 +17,6 @@
         <p> {{place.description}} </p>
       </ion-col>
     </ion-row>
+    <ion-button [routerLink]="['/','places','tabs','offers','edit',place.id]">Edit Experience <ion-icon name="create" style="margin-left:10px!important;"></ion-icon></ion-button>
   </ion-grid>
 </ion-content>
-<ion-button [routerLink]="['/','places','tabs','offers','edit',place.id]">Edit Experience</ion-button>
