@@ -17,4 +17,6 @@ import { DiscoverPage } from './discover.page';
   ],
   declarations: [DiscoverPage]
 })
-export class DiscoverPageModule {}
+export class DiscoverPageModule {
+
+}

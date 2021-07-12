@@ -4,8 +4,34 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-button (click)="onLogin()">
-      Login
-    </ion-button>
+<ion-content padding style="text-align:center">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="8" offset="2">
+          <ion-list>
+            <ion-item style="padding:5px;">
+              <ion-label position="floating">E-mail</ion-label>
+              <ion-input type="email" value="test@testmail.com"></ion-input>
+            </ion-item>
+            <ion-item style="padding:5px;">
+              <ion-label position="floating">Password</ion-label>
+              <ion-input type="password" value="test@testpassword" ></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" offset="3">
+          <ion-spinner *ngIf="isLoading"></ion-spinner>
+          <ion-button expand="block" (click)="onLogin()" *ngIf="!isLoading" >
+            Login
+          </ion-button>
+          <ion-button  expand="block" fill='clear'>Switch to Login</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
 </ion-content>

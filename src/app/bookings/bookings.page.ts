@@ -13,5 +13,8 @@ export class BookingsPage implements OnInit {
   ngOnInit() {
     this.loadedBookings = this.bookingsService.bookings;
   }
+  onCanelBooking(bookingId:string){
+    console.log(bookingId)
+  }
 
 }
