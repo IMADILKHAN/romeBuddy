@@ -1,6 +1,7 @@
 import { Component, OnInit,Input } from '@angular/core';
 import {Place} from '../../places/place.model';
 import {ModalController} from '@ionic/angular'
+import {FormGroup,FormControl,Validators,ReactiveFormsModule} from '@angular/forms';
 @Component({
   selector: 'app-create-booking',
   templateUrl: './create-booking.component.html',

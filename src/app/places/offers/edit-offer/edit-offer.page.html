@@ -9,13 +9,29 @@
 </ion-header>
 
 <ion-content style="text-align:center;">
-  <ion-title style="margin:50px;">{{place.title}}</ion-title>
-  <ion-grid>
-    <ion-row>
-      <ion-col size="6" offset="3">
-        <ion-img [src]="place.imageUrl" ></ion-img>
-        <p> {{place.description}} </p>
+  <form [formGroup]="form">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="9" offset="1">
+          <ion-item>
+            <ion-label position="floating">Edit Title</ion-label>
+            <ion-input type="text" formControlName="title"> </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="9" offset="1">
+          <ion-item>
+            <ion-label position="floating">Edit Description</ion-label>
+            <ion-textarea rows="4" formControlName="description"> </ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-row padding>
+      <ion-col size="4" offset="4">
+          <ion-button (click)="onEdit()" size="block">Edit</ion-button>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </form>
 </ion-content>

@@ -9,5 +9,51 @@
 </ion-header>
 
 <ion-content>
-
+  <form [formGroup]="form">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="9" offset="1">
+          <ion-item>
+            <ion-label position="floating">Experience Title</ion-label>
+            <ion-input type="text" formControlName="title"> </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="9" offset="1">
+          <ion-item>
+            <ion-label position="floating">Description</ion-label>
+            <ion-textarea rows="2" formControlName="description"> </ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-row>
+      <ion-col size="9" offset="1">
+        <ion-item>
+          <ion-label position="floating">Cost Of Experience</ion-label>
+          <ion-input type="number" formControlName="price"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="5" offset="1">
+        <ion-item>
+          <ion-label position="floating">From</ion-label>
+          <ion-datetime min="2021-06-12" formControlName="dateFrom"> </ion-datetime>
+        </ion-item>
+      </ion-col>
+      <ion-col size="5" >
+        <ion-item>
+          <ion-label position="floating">To</ion-label>
+          <ion-datetime min="2021-06-13" formControlName="dateTo"> </ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row padding>
+      <ion-col size="4" offset="4">
+          <ion-button (click)="onCreateOffer()" size="block">Offer</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
 </ion-content>
