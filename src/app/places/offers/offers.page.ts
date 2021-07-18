@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {PlacesService} from '../places.service';
 import {Place} from '../place.model';
+import {Subscription} from 'rxjs';
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.page.html',
@@ -8,13 +9,20 @@ import {Place} from '../place.model';
 })
 export class OffersPage implements OnInit {
   loadedOffers: Place[];
+  private placesSub: Subscription;
   constructor(private placesService:PlacesService) { }
 
   ngOnInit() {
-    this.loadedOffers = this.placesService.places;
+    this.placesSub = this.placesService.places.subscribe(places=>{
+      this.loadedOffers  = places;
+    });
   }
   onEdit(offerId:string){
     console.log('EDITING')
   }
-
+  ngOnDestroy(){
+    if (this.placesSub){
+      this.placesSub.unsubscribe();
+    }
+  }
 }
