@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup,FormControl,Validators,ReactiveFormsModule} from '@angular/forms';
 import {PlacesService} from '../../places.service';
 import {Router} from '@angular/router';
+import {LoadingController} from '@ionic/angular'
 @Component({
   selector: 'app-new-offer',
   templateUrl: './new-offer.page.html',
@@ -9,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class NewOfferPage implements OnInit {
   form:FormGroup;
-  constructor(private placesService:PlacesService,private router:Router) {}
+  constructor(private placesService:PlacesService,private router:Router,private loadingCtrl:LoadingController) {}
   ngOnInit() {
     this.form = new FormGroup({
       title:new FormControl(null,{
@@ -37,18 +38,25 @@ export class NewOfferPage implements OnInit {
 
   onCreateOffer(){
     // console.log(this.form.value.title)
-    this.placesService.addPlace(
-      '1',
-      this.form.value.title,
-      this.form.value.description,
-      '',
-      +this.form.value.price,
-      new Date(this.form.value.dateFrom),
-      new Date(this.form.value.dateTo),
-      '1'
-    )
-    this.form.reset();
-    this.router.navigate(['/'])
+    this.loadingCtrl.create({
+        message:'Addding experience...'
+    }).then(loadingEl=>{
+      loadingEl.present();
+      this.placesService.addPlace(
+        '1',
+        this.form.value.title,
+        this.form.value.description,
+        '',
+        +this.form.value.price,
+        new Date(this.form.value.dateFrom),
+        new Date(this.form.value.dateTo),
+        '1'
+      ).subscribe(()=>{
+        loadingEl.dismiss();
+        this.form.reset();
+        this.router.navigate(['/','places','tabs','offers'])
+      })
+    })
   }
 
 }

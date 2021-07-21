@@ -8,14 +8,19 @@
 </ion-header>
 
 
+
 <ion-content style="text-align:center;">
   <ion-grid>
     <ion-row>
       <ion-col size="8" offset="2">
-        <ion-img [src]="place.imageUrl" ></ion-img>
+        <ion-img [src]="place.imageUrl"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8" offset="2">
         <h3>{{place.title}}</h3>
         <p> {{place.description}} </p>
-        <ion-button (click)="onBookPlace()">Book</ion-button>
+         <ion-button (click)="onBookPlace()">Book</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
