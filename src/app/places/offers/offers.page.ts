@@ -9,6 +9,7 @@ import {Subscription} from 'rxjs';
 })
 export class OffersPage implements OnInit {
   loadedOffers: Place[];
+  isLoading = false;
   private placesSub: Subscription;
   constructor(private placesService:PlacesService) { }
 
@@ -16,6 +17,12 @@ export class OffersPage implements OnInit {
     this.placesSub = this.placesService.places.subscribe(places=>{
       this.loadedOffers  = places;
     });
+  }
+  ionViewWillEnter(){
+    this.isLoading = true;
+    this.placesService.fetchPlaces().subscribe(()=>{
+      this.isLoading = false;
+    })
   }
   onEdit(offerId:string){
     console.log('EDITING')
