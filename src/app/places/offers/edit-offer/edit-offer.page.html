@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button [defaultHref]="['/','places','tabs','offers',place.id]">
+      <ion-back-button [defaultHref]="['/','places','tabs','offers',+ placeId]">
       </ion-back-button>
     </ion-buttons>
     <ion-title>Edit Experience</ion-title>
@@ -9,7 +9,10 @@
 </ion-header>
 
 <ion-content style="text-align:center;">
-  <form [formGroup]="form">
+  <div *ngIf="isLoading">
+    <ion-spinner color="primary"></ion-spinner>
+  </div>
+  <form [formGroup]="form" *ngIf="!isLoading">
     <ion-grid>
       <ion-row>
         <ion-col size="9" offset="1">

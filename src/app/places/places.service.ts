@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Place} from './place.model';
 import {AuthService} from '../auth/auth.service';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject,of} from 'rxjs';
 import {HttpClient} from '@angular/common/http' ;
 import {take,map,tap,delay,switchMap} from 'rxjs/operators';
 
@@ -40,7 +40,20 @@ export class PlacesService {
   }
 
   getPlaces(id:string){
-    // return this.http.get()
+    return this.http.get<PlaceData>(`https://romebuddy-default-rtdb.firebaseio.com/offered-places/${id}.json`)
+    .pipe(
+      map(placeData=>{
+          return new Place(id,
+          placeData.title,
+          placeData.description,
+          placeData.imageUrl,
+          placeData.price,
+          new Date(placeData.availableFrom),
+          new Date(placeData.availableTo),
+          placeData.userId
+        )
+      })
+    )
   }
   constructor(private authService:AuthService,private http:HttpClient) { }
   addPlace(
@@ -86,6 +99,13 @@ export class PlacesService {
     return this.places.pipe(
       take(1),
       switchMap(places => {
+        if (!places || places.length<=0){
+          return this.fetchPlaces();
+        }else{
+          return of(places);
+        }
+      }),
+      switchMap(places=>{
         const updatedPlaceIndex = places.findIndex(pl => pl.id === placeId);
         updatedPlaces = [...places];
         const oldPlace = updatedPlaces[updatedPlaceIndex];
