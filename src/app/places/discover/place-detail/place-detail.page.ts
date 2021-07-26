@@ -1,7 +1,7 @@
 import { Component, OnInit,OnDestroy } from '@angular/core';
 import {Place} from '../../place.model';
-import {ActivatedRoute} from '@angular/router';
-import {NavController,ModalController,ActionSheetController} from '@ionic/angular';
+import {ActivatedRoute,Router} from '@angular/router';
+import {NavController,ModalController,ActionSheetController,AlertController} from '@ionic/angular';
 import {PlacesService} from '../../places.service';
 import {CreateBookingComponent} from 'src/app/bookings/create-booking/create-booking.component'
 import {BookingService} from '../../../bookings/booking.service'
@@ -14,6 +14,7 @@ import {LoadingController} from '@ionic/angular'
 })
 export class PlaceDetailPage implements OnInit,OnDestroy{
   place:Place;
+  isLoading = false;
   private placeSub:Subscription;
   constructor(
     private route:ActivatedRoute,
@@ -22,7 +23,9 @@ export class PlaceDetailPage implements OnInit,OnDestroy{
     private modalCtrl:ModalController,
     private actionSheetCtrl:ActionSheetController,
     private bookingsService:BookingService,
-    private loadingCtrl:LoadingController
+    private loadingCtrl:LoadingController,
+    private alertCtrl:AlertController,
+    private router:Router
     ) { }
 
   ngOnInit() {
@@ -31,9 +34,16 @@ export class PlaceDetailPage implements OnInit,OnDestroy{
         this.navCtrl.navigateBack('/places/tabs/discover');
         return
     }
-
-    this.placeSub = this.placesService.getPlaces(paramMap.get('placeId')).subscribe(place=>{
+    this.isLoading = true;
+    this.placeSub = this.placesService
+    .getPlaces(paramMap.get('placeId'))
+    .subscribe(place=>{
       this.place = place
+      this.isLoading=false;
+    },error=>{
+      this.alertCtrl.create({header:'An error occured!',message:'Could not load the details!',buttons:[{text:'Okay',handler:()=>{
+        this.router.navigate(['/places/tabs/discover'])
+      }}]}).then(alertEl=>alertEl.present())
     })
 
   })

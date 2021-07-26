@@ -9,7 +9,7 @@
 </ion-header>
 
 <ion-content style="text-align:center;">
-  <div *ngIf="isLoading">
+  <div *ngIf="isLoading" text-center>
     <ion-spinner color="primary"></ion-spinner>
   </div>
   <form [formGroup]="form" *ngIf="!isLoading">

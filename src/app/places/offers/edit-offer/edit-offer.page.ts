@@ -1,7 +1,7 @@
 import { Component, OnInit,OnDestroy } from '@angular/core';
 import {Place} from '../../place.model';
 import {ActivatedRoute,Router} from '@angular/router';
-import {NavController} from '@ionic/angular';
+import {NavController,AlertController} from '@ionic/angular';
 import {PlacesService} from '../../places.service';
 import {FormGroup,FormControl,Validators,ReactiveFormsModule} from '@angular/forms';
 import {LoadingController} from '@ionic/angular';
@@ -17,7 +17,7 @@ export class EditOfferPage implements OnInit,OnDestroy {
   form:FormGroup;
   isLoading = false
   private placeSub:Subscription;
-  constructor(private route:ActivatedRoute,private router:Router,private navCtrl:NavController,private placesService:PlacesService,private loadingCtrl:LoadingController) { }
+  constructor(private route:ActivatedRoute,private router:Router,private navCtrl:NavController,private placesService:PlacesService,private loadingCtrl:LoadingController,private alertCtrl:AlertController) { }
 
   ngOnInit() {
   this.route.paramMap.subscribe(paramMap=>{
@@ -27,7 +27,8 @@ export class EditOfferPage implements OnInit,OnDestroy {
     }
     this.placeId = paramMap.get('placeId');
     this.isLoading = true
-    this.placeSub=this.placesService.getPlaces(paramMap.get('placeId')).subscribe(place=>{
+    this.placeSub=this.placesService.getPlaces(paramMap.get('placeId'))
+    .subscribe(place=>{
       this.place = place;
       this.form = new FormGroup({
         title:new FormControl(this.place.title,{
@@ -40,6 +41,13 @@ export class EditOfferPage implements OnInit,OnDestroy {
         })
       })
       this.isLoading = false
+    },error=>{
+        this.alertCtrl.create({header:'An error occured!',message:'Experience could not be found. Please try again later.',
+      buttons:[{text:'Okay',handler:() => {
+        this.router.navigate(['/places/tabs/offers'])
+      }}]}).then(alertEl=>{
+        alertEl.present()
+      })
     })
 
   })
