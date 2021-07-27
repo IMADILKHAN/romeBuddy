@@ -29,7 +29,10 @@
       </ion-col>
       <ion-col size-lg="8" offset-lg='2' *ngIf="!isLoading && loadedBookings && loadedBookings.length > 0">
         <ion-list *ngFor="let booking of loadedBookings">
-            <ion-item>
+            <ion-item lines="full">
+              <ion-avatar slot="start">
+                <ion-img [src]="booking.placeImage"></ion-img>
+              </ion-avatar>
               <ion-label>
                 <h2>{{booking.placeTitle}}</h2>
                 <p style="font-size:0.9rem;margin-top:5px;">Number Of Guests : {{booking.guestNumber}}</p>
