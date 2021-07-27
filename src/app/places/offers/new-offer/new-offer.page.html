@@ -50,7 +50,13 @@
         </ion-item>
       </ion-col>
     </ion-row>
-    <ion-row padding>
+    <ion-row>
+      <ion-col size="9" offset="1">
+          <app-location-picker></app-location-picker>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="padding-top:70px;">
       <ion-col size="4" offset="4">
           <ion-button (click)="onCreateOffer()" size="block">Offer</ion-button>
       </ion-col>
