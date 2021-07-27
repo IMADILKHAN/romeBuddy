@@ -9,7 +9,8 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./bookings.page.scss'],
 })
 export class BookingsPage implements OnInit,OnDestroy {
-  loadedBookings :Booking[]
+  loadedBookings :Booking[];
+  isLoading=false;
   private bookingSub:Subscription
   constructor(private bookingsService:BookingService,private loadingCtrl:LoadingController) { }
 
@@ -20,6 +21,13 @@ export class BookingsPage implements OnInit,OnDestroy {
 
       }
     )
+  }
+  ionViewWillEnter(){
+    this.isLoading = true;
+    this.bookingsService.fetchBooking().subscribe(()=>{
+      this.isLoading = false;
+    })
+
   }
 
   onCanelBooking(bookingId:string){

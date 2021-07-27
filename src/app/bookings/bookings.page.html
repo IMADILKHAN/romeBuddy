@@ -10,6 +10,11 @@
 <ion-content padding>
   <ion-grid>
     <ion-row style="padding:20px;">
+      <ion-col style="text-align:center" size-lg="8" offset-lg="2" *ngIf="isLoading">
+        <ion-spinner color="primary">
+
+        </ion-spinner>
+      </ion-col>
       <ion-col  style="text-align:center">
         <ion-label>
           <ion-title>
@@ -19,10 +24,10 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col style="text-align:center" size-lg="8" offset-lg="2" *ngIf="!loadedBookings || loadedBookings.length==0">
+      <ion-col style="text-align:center" size-lg="8" offset-lg="2" *ngIf="!isLoading && (!loadedBookings || loadedBookings.length==0)">
           <p>You don't have any booked experience</p>
       </ion-col>
-      <ion-col size-lg="8" offset-lg='2' *ngIf="loadedBookings && loadedBookings.length > 0">
+      <ion-col size-lg="8" offset-lg='2' *ngIf="!isLoading && loadedBookings && loadedBookings.length > 0">
         <ion-list *ngFor="let booking of loadedBookings">
             <ion-item>
               <ion-label>

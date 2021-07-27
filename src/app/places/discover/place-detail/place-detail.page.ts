@@ -75,7 +75,6 @@ export class PlaceDetailPage implements OnInit,OnDestroy{
       })
   }
   openBookingModal(mode:'select'|'random'){
-      console.log(mode)
       this.modalCtrl.create({component:CreateBookingComponent, componentProps:
         {selectedPlace:this.place,selectedMode:mode}})
       .then(modalEl =>{
@@ -89,7 +88,8 @@ export class PlaceDetailPage implements OnInit,OnDestroy{
           }).then(loadingEl=>{
             loadingEl.present()
             const data = resultData.data.bookingData;
-            this.bookingsService.addBooking(this.place.id,this.place.title,this.place.imageUrl,data.firstName,data.lastName,data.guestNumber,data.dateFrom).subscribe(()=>{
+            this.bookingsService.addBooking(this.place.id,this.place.title,this.place.imageUrl,data.firstName,data.lastName,data.guestNumber,data.dateFrom)
+            .subscribe(()=>{
               loadingEl.dismiss();
             })
           })
