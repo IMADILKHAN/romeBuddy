@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons >
+    <ion-title>My Experiences</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row style="padding:20px;">
+      <ion-col style="text-align:center" size-lg="8" offset-lg="2" *ngIf="isLoading">
+        <ion-spinner color="primary">
+
+        </ion-spinner>
+      </ion-col>
+      <ion-col  style="text-align:center">
+        <ion-label>
+          <ion-title>
+            Upcoming Experiences
+          </ion-title>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="text-align:center" size-lg="8" offset-lg="2" *ngIf="!isLoading && (!loadedBookings || loadedBookings.length==0)">
+          <p>You don't have any booked experience</p>
+      </ion-col>
+      <ion-col size-lg="8" offset-lg='2' *ngIf="!isLoading && loadedBookings && loadedBookings.length > 0">
+        <ion-list *ngFor="let booking of loadedBookings">
+            <ion-item lines="full">
+              <ion-avatar slot="start">
+                <ion-img [src]="booking.placeImage"></ion-img>
+              </ion-avatar>
+              <ion-label>
+                <h2>{{booking.placeTitle}}</h2>
+                <p style="font-size:0.9rem;margin-top:5px;">Number Of Guests : {{booking.guestNumber}}</p>
+                <ion-button style="margin-top:5px;" (click)="onCanelBooking(booking.id)" >
+                  <ion-icon name="trash" slot="icon-only"></ion-icon>
+                </ion-button>
+              </ion-label>
+            </ion-item>
+        </ion-list>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>

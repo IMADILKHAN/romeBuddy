@@ -1,0 +1,40 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons >
+    <ion-title>Explore</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content slot='fixed' no-padding>
+  <ion-grid no-padding>
+    <ion-row no-padding>
+      <ion-col no-padding>
+        <ion-img src='/assets/featuredImg.jpg' ></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-card-content>
+  </ion-card-content>
+  <ion-label style="text-align:center">
+    <h2 style="font-size:3rem;">Discover Experiences</h2>
+  </ion-label>
+  <ion-grid>
+    <ion-row>
+    <ion-col  size="12" size-sm="8" offset-sm="1" *ngFor="let loadedPlace of loadedPlaces">
+        <ion-item [routerLink]="['/','places','tabs','discover',loadedPlace.id]" >
+        <ion-thumbnail style="width: 30%; height: 10rem;" slot="start">
+          <ion-img [src]="loadedPlace.imageUrl"></ion-img>
+        </ion-thumbnail>
+        <ion-label>
+          <h2 style="text-align:center;">{{loadedPlace.title}}</h2>
+          <p>{{loadedPlace.description}}</p>
+          <ion-card-subtitle>{{loadedPlace.price | currency}}</ion-card-subtitle>
+        </ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  </ion-grid>
+</ion-content>
