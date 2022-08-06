@@ -10,11 +10,16 @@ _following are the techonlogies used_
  * Capacitor.
  * firebase.
  
+
+https://user-images.githubusercontent.com/50789661/183258216-be6990f3-b2c1-4b8e-af87-151433e68479.mp4
+
+
  ![1](1.png)
   ![2](2.png)
  
  _ Steps to use this project_
  
  * Download the repository
- * Type npm install
- * then type:- npm run watch
+ * Install angular and ionic 
+ * then type:- ng run or ionic run 
+ * website will launch on port 8000
